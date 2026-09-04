@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: docker
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci --no-audit --no-fund
+      - run: node --test test/*.test.js
+        env:
+          PGHOST: postgres
+          PGPORT: 5432
+          PGUSER: test
+          PGPASSWORD: test
+          PGDATABASE: test
+          PORT: 3000
