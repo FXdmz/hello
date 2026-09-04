@@ -1,15 +1,18 @@
 {
-  "name": "hello",
+  "name": "express-postgres-server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Express server with PostgreSQL for note taking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "sops exec-env secrets.sops.env 'node --test test/*.test.js'"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "express": "^5.2.1"
+    "express": "^4.18.2",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
